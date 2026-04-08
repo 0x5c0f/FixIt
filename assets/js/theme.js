@@ -15,6 +15,7 @@ import {
   HTMLEscape,
 } from './utils/common';
 import FileTree from './lib/file-tree.js'
+import { bindExternalLinkGuard } from './modules/external-link-guard';
 
 const copyText = createCopyText();
 
@@ -915,6 +916,10 @@ class FixIt {
     });
   }
 
+  initExternalLinkGuard() {
+    bindExternalLinkGuard(this, copyText);
+  }
+
   /**
    * It's a dirty hack to fix the bug of APlayer and smoothScroll. 
    * see https://github.com/hugo-fixit/FixIt/issues/292
@@ -1706,6 +1711,7 @@ class FixIt {
       this.initMenu();
       this.initSwitchTheme();
       this.initSearch();
+      this.initExternalLinkGuard();
       this.initCookieconsent();
       this.initSiteTime();
       this.initServiceWorker();
